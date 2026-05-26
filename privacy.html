@@ -11,80 +11,179 @@
       h2 { margin-top: 34px; font-size: 20px; }
       p, li { color: #3f3f3f; }
       a { color: #0a7f38; font-weight: 700; }
+      .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+      .lang { display: flex; border: 2px solid #171717; background: #fffdf6; }
+      .lang button { border: 0; background: transparent; padding: 8px 10px; font-weight: 800; cursor: pointer; }
+      .lang button.active { background: #171717; color: #fffdf6; }
       .meta { color: #777; margin-bottom: 30px; }
       .box { border: 2px solid #171717; background: #fffdf6; padding: 18px; box-shadow: 5px 5px 0 #1fbf62; }
+      [data-lang="en"] { display: none; }
+      body.en [data-lang="it"] { display: none; }
+      body.en [data-lang="en"] { display: block; }
     </style>
   </head>
   <body>
     <main>
-      <h1>Privacy Policy di Foot8</h1>
-      <p class="meta">Ultimo aggiornamento: 18 maggio 2026</p>
-
-      <div class="box">
-        <p>Foot8 è un'app per organizzare leghe, partite, sondaggi di disponibilità e statistiche tra giocatori. Questa informativa descrive quali dati vengono raccolti e come vengono utilizzati.</p>
+      <div class="top">
+        <div>
+          <h1 data-lang="it">Privacy Policy di Foot8</h1>
+          <h1 data-lang="en">Foot8 Privacy Policy</h1>
+          <p class="meta" data-lang="it">Ultimo aggiornamento: 18 maggio 2026</p>
+          <p class="meta" data-lang="en">Last updated: May 18, 2026</p>
+        </div>
+        <div class="lang" aria-label="Language switch">
+          <button type="button" data-set-lang="it" class="active">IT</button>
+          <button type="button" data-set-lang="en">EN</button>
+        </div>
       </div>
 
-      <h2>1. Titolare del trattamento</h2>
-      <p>Il titolare del trattamento è Alessandro Pitocchi, gestore dell'app Foot8. Per richieste privacy, supporto o cancellazione dati puoi scrivere a <a href="mailto:alessandro@pitocchi.it">alessandro@pitocchi.it</a> o usare la pagina <a href="./support.html">Supporto</a>.</p>
+      <section data-lang="it">
+        <div class="box">
+          <p>Foot8 è un'app per organizzare leghe, partite, sondaggi di disponibilità e statistiche tra giocatori. Questa informativa descrive quali dati vengono raccolti e come vengono utilizzati.</p>
+        </div>
 
-      <h2>2. Dati raccolti</h2>
-      <p>Foot8 raccoglie solo i dati necessari al funzionamento dell'app:</p>
-      <ul>
-        <li>indirizzo email, per autenticazione e gestione account;</li>
-        <li>nome o nome visualizzato scelto dall'utente;</li>
-        <li>identificativo utente generato dal sistema di autenticazione;</li>
-        <li>token push, se l'utente autorizza le notifiche;</li>
-        <li>informazioni su leghe, membri, ruoli e inviti;</li>
-        <li>partite, luoghi inseriti manualmente, presenze, squadre, risultati, gol e MVP;</li>
-        <li>sondaggi, date proposte e voti di disponibilità;</li>
-        <li>statistiche sportive calcolate dall'app, come presenze, vittorie, gol, MVP e OVR.</li>
-      </ul>
+        <h2>1. Titolare del trattamento</h2>
+        <p>Il titolare del trattamento è Alessandro Pitocchi, gestore dell'app Foot8. Per richieste privacy, supporto o cancellazione dati puoi scrivere a <a href="mailto:alessandro@pitocchi.it">alessandro@pitocchi.it</a> o usare la pagina <a href="./support.html">Supporto</a>.</p>
 
-      <h2>3. Finalità e base giuridica del trattamento</h2>
-      <p>I dati vengono utilizzati per:</p>
-      <ul>
-        <li>creare e gestire l'account;</li>
-        <li>consentire l'accesso alle leghe e alle partite;</li>
-        <li>mostrare statistiche personali e di lega;</li>
-        <li>gestire sondaggi, presenze, risultati e formazioni;</li>
-        <li>inviare notifiche relative a sondaggi, partite e promemoria, solo se autorizzate.</li>
-      </ul>
-      <p>La base giuridica del trattamento è l'esecuzione del contratto (art. 6.1.b GDPR) per i dati necessari al funzionamento dell'app, e il consenso dell'utente (art. 6.1.a GDPR) per l'invio di notifiche push.</p>
+        <h2>2. Dati raccolti</h2>
+        <p>Foot8 raccoglie solo i dati necessari al funzionamento dell'app:</p>
+        <ul>
+          <li>indirizzo email, per autenticazione e gestione account;</li>
+          <li>nome o nome visualizzato scelto dall'utente;</li>
+          <li>identificativo utente generato dal sistema di autenticazione;</li>
+          <li>token push, se l'utente autorizza le notifiche;</li>
+          <li>informazioni su leghe, membri, ruoli e inviti;</li>
+          <li>partite, luoghi inseriti manualmente o selezionati tramite ricerca mappa, eventuali coordinate, presenze, squadre, risultati, gol e MVP;</li>
+          <li>sondaggi, date proposte, durate e voti di disponibilità;</li>
+          <li>statistiche sportive calcolate dall'app, come presenze, vittorie, gol, MVP e OVR.</li>
+        </ul>
 
-      <h2>4. Visibilità dei dati</h2>
-      <p>I dati di una lega sono visibili agli altri membri della stessa lega. Ad esempio, i membri possono vedere nomi, voti nei sondaggi, presenze, risultati e statistiche collegate alla lega. I dati non sono pubblici al di fuori dell'app.</p>
+        <h2>3. Finalità e base giuridica del trattamento</h2>
+        <p>I dati vengono utilizzati per:</p>
+        <ul>
+          <li>creare e gestire l'account;</li>
+          <li>consentire l'accesso alle leghe e alle partite;</li>
+          <li>mostrare statistiche personali e di lega;</li>
+          <li>gestire sondaggi, presenze, risultati e formazioni;</li>
+          <li>inviare notifiche relative a sondaggi, partite e promemoria, solo se autorizzate.</li>
+        </ul>
+        <p>La base giuridica del trattamento è l'esecuzione del contratto (art. 6.1.b GDPR) per i dati necessari al funzionamento dell'app, e il consenso dell'utente (art. 6.1.a GDPR) per l'invio di notifiche push.</p>
 
-      <h2>5. Notifiche push</h2>
-      <p>Le notifiche sono facoltative. Se l'utente concede il permesso, Foot8 salva un token push tecnico per inviare notifiche operative, come nuovi sondaggi, partite create, squadre pronte o promemoria. Il permesso può essere revocato dalle impostazioni del dispositivo.</p>
+        <h2>4. Visibilità dei dati</h2>
+        <p>I dati di una lega sono visibili agli altri membri della stessa lega. Ad esempio, i membri possono vedere nomi, voti nei sondaggi, presenze, risultati e statistiche collegate alla lega. I dati non sono pubblici al di fuori dell'app.</p>
 
-      <h2>6. Servizi terzi e trasferimento dati extra-UE</h2>
-      <p>Foot8 utilizza Supabase per autenticazione, database e funzioni backend. Per l'invio delle notifiche push viene utilizzato il servizio Expo Push Notifications. L'app non vende dati personali e non utilizza i dati per advertising comportamentale o tracking pubblicitario.</p>
-      <p>Supabase ed Expo sono servizi con sede negli Stati Uniti. Il trasferimento dei dati verso questi fornitori avviene nel rispetto delle garanzie previste dal GDPR, tramite le Clausole Contrattuali Standard adottate dai rispettivi fornitori.</p>
+        <h2>5. Notifiche push</h2>
+        <p>Le notifiche sono facoltative. Se l'utente concede il permesso, Foot8 salva un token push tecnico per inviare notifiche operative, come nuovi sondaggi, partite create, squadre pronte o promemoria. Il permesso può essere revocato dalle impostazioni del dispositivo.</p>
 
-      <h2>7. Conservazione dei dati</h2>
-      <p>I dati vengono conservati finché l'account è attivo o finché sono necessari per il funzionamento delle leghe e delle partite. L'utente può eliminare il proprio account direttamente dall'app.</p>
+        <h2>6. Servizi terzi e trasferimento dati extra-UE</h2>
+        <p>Foot8 utilizza Supabase per autenticazione, database e funzioni backend. Per l'invio delle notifiche push viene utilizzato il servizio Expo Push Notifications. L'app non vende dati personali e non utilizza i dati per advertising comportamentale o tracking pubblicitario.</p>
+        <p>Supabase ed Expo sono servizi con sede negli Stati Uniti. Il trasferimento dei dati verso questi fornitori avviene nel rispetto delle garanzie previste dal GDPR, tramite le Clausole Contrattuali Standard adottate dai rispettivi fornitori.</p>
 
-      <h2>8. Eliminazione account</h2>
-      <p>L'utente può eliminare l'account dall'app nella sezione Carta tramite il pulsante "Elimina account". L'eliminazione rimuove profilo, dati personali collegati e dati gestiti dall'account, nei limiti tecnici necessari a mantenere l'integrità delle leghe condivise.</p>
+        <h2>7. Conservazione dei dati</h2>
+        <p>I dati vengono conservati finché l'account è attivo o finché sono necessari per il funzionamento delle leghe e delle partite. L'utente può eliminare il proprio account direttamente dall'app.</p>
 
-      <h2>9. Sicurezza</h2>
-      <p>I dati sono protetti tramite autenticazione, controlli di accesso e Row Level Security sul database. L'accesso alle informazioni è limitato agli utenti autorizzati, come membri o amministratori delle rispettive leghe.</p>
+        <h2>8. Eliminazione account</h2>
+        <p>L'utente può eliminare l'account dall'app nella sezione Carta tramite il pulsante "Elimina account". L'eliminazione rimuove profilo, dati personali collegati e dati gestiti dall'account, nei limiti tecnici necessari a mantenere l'integrità delle leghe condivise.</p>
 
-      <h2>10. Diritti dell'utente (GDPR)</h2>
-      <p>In base al GDPR, l'utente ha diritto a:</p>
-      <ul>
-        <li><strong>Accesso</strong> — ottenere conferma del trattamento e copia dei propri dati;</li>
-        <li><strong>Rettifica</strong> — correggere dati inesatti o incompleti;</li>
-        <li><strong>Cancellazione</strong> — richiedere l'eliminazione dei propri dati ("diritto all'oblio");</li>
-        <li><strong>Limitazione</strong> — limitare il trattamento in determinati casi previsti dal GDPR;</li>
-        <li><strong>Portabilità</strong> — ricevere i propri dati in formato strutturato e leggibile da macchina;</li>
-        <li><strong>Opposizione</strong> — opporsi al trattamento per motivi legati alla propria situazione particolare;</li>
-        <li><strong>Reclamo</strong> — presentare reclamo al Garante per la Protezione dei Dati Personali (<a href="https://www.garanteprivacy.it" target="_blank">garanteprivacy.it</a>).</li>
-      </ul>
-      <p>Per esercitare questi diritti scrivi a <a href="mailto:alessandro@pitocchi.it">alessandro@pitocchi.it</a> o usa i contatti nella pagina <a href="./support.html">Supporto</a>.</p>
+        <h2>9. Sicurezza</h2>
+        <p>I dati sono protetti tramite autenticazione, controlli di accesso e Row Level Security sul database. L'accesso alle informazioni è limitato agli utenti autorizzati, come membri o amministratori delle rispettive leghe.</p>
 
-      <h2>11. Modifiche a questa policy</h2>
-      <p>Questa Privacy Policy può essere aggiornata per riflettere modifiche dell'app o requisiti normativi. La versione più recente sarà sempre disponibile a questo indirizzo.</p>
+        <h2>10. Diritti dell'utente (GDPR)</h2>
+        <p>In base al GDPR, l'utente ha diritto a:</p>
+        <ul>
+          <li><strong>Accesso</strong> - ottenere conferma del trattamento e copia dei propri dati;</li>
+          <li><strong>Rettifica</strong> - correggere dati inesatti o incompleti;</li>
+          <li><strong>Cancellazione</strong> - richiedere l'eliminazione dei propri dati;</li>
+          <li><strong>Limitazione</strong> - limitare il trattamento in determinati casi previsti dal GDPR;</li>
+          <li><strong>Portabilità</strong> - ricevere i propri dati in formato strutturato e leggibile da macchina;</li>
+          <li><strong>Opposizione</strong> - opporsi al trattamento per motivi legati alla propria situazione particolare;</li>
+          <li><strong>Reclamo</strong> - presentare reclamo al Garante per la Protezione dei Dati Personali (<a href="https://www.garanteprivacy.it" target="_blank">garanteprivacy.it</a>).</li>
+        </ul>
+        <p>Per esercitare questi diritti scrivi a <a href="mailto:alessandro@pitocchi.it">alessandro@pitocchi.it</a> o usa i contatti nella pagina <a href="./support.html">Supporto</a>.</p>
+
+        <h2>11. Informativa privacy per Stati Uniti</h2>
+        <p>Foot8 non vende dati personali e non condivide dati personali per pubblicità comportamentale cross-context o tracking pubblicitario. I dati vengono usati per fornire le funzionalità dell'app, sicurezza, supporto e notifiche operative. Gli utenti negli Stati Uniti possono richiedere accesso, correzione o eliminazione dei dati scrivendo a <a href="mailto:alessandro@pitocchi.it">alessandro@pitocchi.it</a>.</p>
+
+        <h2>12. Modifiche a questa policy</h2>
+        <p>Questa Privacy Policy può essere aggiornata per riflettere modifiche dell'app o requisiti normativi. La versione più recente sarà sempre disponibile a questo indirizzo.</p>
+      </section>
+
+      <section data-lang="en">
+        <div class="box">
+          <p>Foot8 is an app for organizing leagues, matches, availability polls and player statistics. This policy explains what data is collected and how it is used.</p>
+        </div>
+
+        <h2>1. Data controller</h2>
+        <p>The data controller is Alessandro Pitocchi, operator of the Foot8 app. For privacy requests, support or data deletion, contact <a href="mailto:alessandro@pitocchi.it">alessandro@pitocchi.it</a> or use the <a href="./support.html?lang=en">Support</a> page.</p>
+
+        <h2>2. Data collected</h2>
+        <p>Foot8 collects only the data needed to provide the app:</p>
+        <ul>
+          <li>email address, for authentication and account management;</li>
+          <li>name or display name chosen by the user;</li>
+          <li>user ID generated by the authentication system;</li>
+          <li>push token, if the user allows notifications;</li>
+          <li>information about leagues, members, roles and invitations;</li>
+          <li>matches, places entered manually or selected through map search, optional coordinates, attendance, teams, results, goals and MVP;</li>
+          <li>polls, proposed dates, durations and availability votes;</li>
+          <li>sports statistics calculated by the app, such as appearances, wins, goals, MVP and OVR.</li>
+        </ul>
+
+        <h2>3. Purposes and legal basis</h2>
+        <p>The data is used to:</p>
+        <ul>
+          <li>create and manage the account;</li>
+          <li>provide access to leagues and matches;</li>
+          <li>show personal and league statistics;</li>
+          <li>manage polls, attendance, results and teams;</li>
+          <li>send notifications about polls, matches and reminders, only if authorized.</li>
+        </ul>
+        <p>For users in the European Economic Area, the legal basis is performance of the service agreement for data needed to operate the app, and user consent for push notifications.</p>
+
+        <h2>4. Data visibility</h2>
+        <p>League data is visible to other members of the same league. For example, members can see names, poll votes, attendance, results and league statistics. Data is not public outside the app.</p>
+
+        <h2>5. Push notifications</h2>
+        <p>Push notifications are optional. If the user grants permission, Foot8 stores a technical push token to send operational notifications, such as new polls, created matches, ready teams or reminders. Permission can be revoked from the device settings.</p>
+
+        <h2>6. Third-party services and international transfers</h2>
+        <p>Foot8 uses Supabase for authentication, database and backend functions. Expo Push Notifications is used to send push notifications. The app does not sell personal data and does not use data for behavioral advertising or advertising tracking.</p>
+        <p>Supabase and Expo are services based in the United States. For EEA users, data transfers to these providers are handled under the safeguards required by GDPR, including the Standard Contractual Clauses adopted by the providers.</p>
+
+        <h2>7. Data retention</h2>
+        <p>Data is retained while the account is active or while it is needed for leagues and matches to work. Users can delete their account directly from the app.</p>
+
+        <h2>8. Account deletion</h2>
+        <p>Users can delete their account from the app in the Card section by tapping "Delete account". Deletion removes the profile, linked personal data and account-managed data, within the technical limits needed to preserve the integrity of shared leagues.</p>
+
+        <h2>9. Security</h2>
+        <p>Data is protected through authentication, access controls and Row Level Security on the database. Access to information is limited to authorized users, such as members or administrators of the relevant leagues.</p>
+
+        <h2>10. User rights</h2>
+        <p>Depending on applicable law, users may request access, correction, deletion, restriction, portability or objection regarding their personal data. EEA users also have the right to lodge a complaint with their local data protection authority.</p>
+        <p>To exercise these rights, contact <a href="mailto:alessandro@pitocchi.it">alessandro@pitocchi.it</a> or use the <a href="./support.html?lang=en">Support</a> page.</p>
+
+        <h2>11. United States privacy notice</h2>
+        <p>Foot8 does not sell personal data and does not share personal data for cross-context behavioral advertising or advertising tracking. Data is used to provide app functionality, security, support and operational notifications. Users in the United States can request access, correction or deletion of their data by contacting <a href="mailto:alessandro@pitocchi.it">alessandro@pitocchi.it</a>.</p>
+
+        <h2>12. Changes to this policy</h2>
+        <p>This Privacy Policy may be updated to reflect app changes or legal requirements. The latest version will always be available at this address.</p>
+      </section>
     </main>
+    <script>
+      function setLang(lang) {
+        document.body.classList.toggle('en', lang === 'en');
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
+          btn.classList.toggle('active', btn.dataset.setLang === lang);
+        });
+        localStorage.setItem('foot8_lang', lang);
+      }
+      var params = new URLSearchParams(window.location.search);
+      setLang(params.get('lang') || localStorage.getItem('foot8_lang') || 'it');
+      document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
+        btn.addEventListener('click', function () { setLang(btn.dataset.setLang); });
+      });
+    </script>
   </body>
 </html>

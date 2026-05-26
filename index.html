@@ -10,18 +10,51 @@
       h1 { font-size: 42px; line-height: 1.05; margin: 0 0 12px; }
       p { color: #4b4b4b; }
       a { color: #0a7f38; font-weight: 700; }
+      .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+      .lang { display: flex; border: 2px solid #171717; background: #fffdf6; }
+      .lang button { border: 0; background: transparent; padding: 8px 10px; font-weight: 800; cursor: pointer; }
+      .lang button.active { background: #171717; color: #fffdf6; }
       .links { display: grid; gap: 12px; margin-top: 28px; }
       .card { border: 2px solid #171717; background: #fffdf6; padding: 18px; box-shadow: 5px 5px 0 #1fbf62; }
+      [data-lang="en"] { display: none; }
+      body.en [data-lang="it"] { display: none; }
+      body.en [data-lang="en"] { display: block; }
     </style>
   </head>
   <body>
     <main>
-      <h1>Foot8</h1>
-      <p>Documenti pubblici per privacy, supporto e revisione App Store.</p>
+      <div class="top">
+        <div>
+          <h1>Foot8</h1>
+          <p data-lang="it">Documenti pubblici per privacy, supporto e revisione App Store.</p>
+          <p data-lang="en">Public documents for privacy, support and App Store review.</p>
+        </div>
+        <div class="lang" aria-label="Language switch">
+          <button type="button" data-set-lang="it" class="active">IT</button>
+          <button type="button" data-set-lang="en">EN</button>
+        </div>
+      </div>
       <div class="links">
-        <a class="card" href="./privacy.html">Privacy Policy</a>
-        <a class="card" href="./support.html">Supporto</a>
+        <a class="card" href="./privacy.html" data-lang="it">Privacy Policy</a>
+        <a class="card" href="./privacy.html?lang=en" data-lang="en">Privacy Policy</a>
+        <a class="card" href="./support.html" data-lang="it">Supporto</a>
+        <a class="card" href="./support.html?lang=en" data-lang="en">Support</a>
       </div>
     </main>
+    <script>
+      function setLang(lang) {
+        document.body.classList.toggle('en', lang === 'en');
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
+          btn.classList.toggle('active', btn.dataset.setLang === lang);
+        });
+        localStorage.setItem('foot8_lang', lang);
+      }
+      var params = new URLSearchParams(window.location.search);
+      setLang(params.get('lang') || localStorage.getItem('foot8_lang') || 'it');
+      document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
+        btn.addEventListener('click', function () { setLang(btn.dataset.setLang); });
+      });
+    </script>
   </body>
 </html>

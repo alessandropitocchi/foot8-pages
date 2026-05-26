@@ -11,37 +11,88 @@
       h2 { margin-top: 32px; font-size: 20px; }
       p, li { color: #3f3f3f; }
       a { color: #0a7f38; font-weight: 700; }
+      .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+      .lang { display: flex; border: 2px solid #171717; background: #fffdf6; }
+      .lang button { border: 0; background: transparent; padding: 8px 10px; font-weight: 800; cursor: pointer; }
+      .lang button.active { background: #171717; color: #fffdf6; }
       .box { border: 2px solid #171717; background: #fffdf6; padding: 18px; box-shadow: 5px 5px 0 #1fbf62; margin-top: 24px; }
       .label { font-weight: 800; color: #171717; }
+      [data-lang="en"] { display: none; }
+      body.en [data-lang="it"] { display: none; }
+      body.en [data-lang="en"] { display: block; }
     </style>
   </head>
   <body>
     <main>
-      <h1>Supporto Foot8</h1>
-      <p>Per assistenza, problemi tecnici, richieste privacy o segnalazioni relative ai contenuti dell'app, usa i contatti indicati qui sotto.</p>
-
-      <div class="box">
-        <p><span class="label">Email supporto:</span> <a href="mailto:alessandro@pitocchi.it">alessandro@pitocchi.it</a></p>
-        <p><span class="label">Privacy:</span> <a href="./privacy.html">Privacy Policy</a></p>
+      <div class="top">
+        <div>
+          <h1 data-lang="it">Supporto Foot8</h1>
+          <h1 data-lang="en">Foot8 Support</h1>
+        </div>
+        <div class="lang" aria-label="Language switch">
+          <button type="button" data-set-lang="it" class="active">IT</button>
+          <button type="button" data-set-lang="en">EN</button>
+        </div>
       </div>
 
-      <h2>Account e accesso</h2>
-      <p>Per problemi di login, registrazione, conferma email o accesso con Apple, scrivi all'indirizzo di supporto indicando l'email usata per l'account.</p>
+      <section data-lang="it">
+        <p>Per assistenza, problemi tecnici, richieste privacy o segnalazioni relative ai contenuti dell'app, usa i contatti indicati qui sotto.</p>
+        <div class="box">
+          <p><span class="label">Email supporto:</span> <a href="mailto:alessandro@pitocchi.it">alessandro@pitocchi.it</a></p>
+          <p><span class="label">Privacy:</span> <a href="./privacy.html">Privacy Policy</a></p>
+        </div>
+        <h2>Account e accesso</h2>
+        <p>Per problemi di login, registrazione, conferma email o accesso con Apple, scrivi all'indirizzo di supporto indicando l'email usata per l'account.</p>
+        <h2>Eliminazione account</h2>
+        <p>Puoi eliminare il tuo account direttamente dall'app:</p>
+        <ul>
+          <li>apri Foot8;</li>
+          <li>vai nella sezione Carta;</li>
+          <li>tocca "Elimina account";</li>
+          <li>conferma l'eliminazione.</li>
+        </ul>
+        <h2>Segnalazioni</h2>
+        <p>Per segnalare contenuti offensivi, spam, dati errati o comportamenti non appropriati in una lega, invia una email al supporto con una breve descrizione del problema.</p>
+        <h2>Notifiche</h2>
+        <p>Le notifiche push sono facoltative. Puoi disattivarle dalle impostazioni del dispositivo iOS o Android.</p>
+      </section>
 
-      <h2>Eliminazione account</h2>
-      <p>Puoi eliminare il tuo account direttamente dall'app:</p>
-      <ul>
-        <li>apri Foot8;</li>
-        <li>vai nella sezione Carta;</li>
-        <li>tocca "Elimina account";</li>
-        <li>conferma l'eliminazione.</li>
-      </ul>
-
-      <h2>Segnalazioni</h2>
-      <p>Per segnalare contenuti offensivi, spam, dati errati o comportamenti non appropriati in una lega, invia una email al supporto con una breve descrizione del problema.</p>
-
-      <h2>Notifiche</h2>
-      <p>Le notifiche push sono facoltative. Puoi disattivarle dalle impostazioni del dispositivo iOS o Android.</p>
+      <section data-lang="en">
+        <p>For support, technical issues, privacy requests or reports about app content, use the contact details below.</p>
+        <div class="box">
+          <p><span class="label">Support email:</span> <a href="mailto:alessandro@pitocchi.it">alessandro@pitocchi.it</a></p>
+          <p><span class="label">Privacy:</span> <a href="./privacy.html?lang=en">Privacy Policy</a></p>
+        </div>
+        <h2>Account and access</h2>
+        <p>For login, registration, email confirmation or Apple sign-in issues, contact support and include the email address used for the account.</p>
+        <h2>Account deletion</h2>
+        <p>You can delete your account directly from the app:</p>
+        <ul>
+          <li>open Foot8;</li>
+          <li>go to the Card section;</li>
+          <li>tap "Delete account";</li>
+          <li>confirm deletion.</li>
+        </ul>
+        <h2>Reports</h2>
+        <p>To report offensive content, spam, incorrect data or inappropriate behavior in a league, email support with a short description of the issue.</p>
+        <h2>Notifications</h2>
+        <p>Push notifications are optional. You can disable them from the iOS or Android device settings.</p>
+      </section>
     </main>
+    <script>
+      function setLang(lang) {
+        document.body.classList.toggle('en', lang === 'en');
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
+          btn.classList.toggle('active', btn.dataset.setLang === lang);
+        });
+        localStorage.setItem('foot8_lang', lang);
+      }
+      var params = new URLSearchParams(window.location.search);
+      setLang(params.get('lang') || localStorage.getItem('foot8_lang') || 'it');
+      document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
+        btn.addEventListener('click', function () { setLang(btn.dataset.setLang); });
+      });
+    </script>
   </body>
 </html>
