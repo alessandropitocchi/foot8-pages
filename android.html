@@ -3,58 +3,134 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Test Android - Foot8</title>
+    <title>Android – Foot8</title>
     <link rel="icon" type="image/png" href="./icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-      body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f2efe6; color: #171717; line-height: 1.6; }
-      main { max-width: 760px; margin: 0 auto; padding: 44px 22px 64px; }
-      h1 { font-size: 40px; line-height: 1.05; margin: 0 0 8px; }
-      h2 { margin-top: 32px; font-size: 20px; }
-      p, li { color: #3f3f3f; }
-      a { color: #0a7f38; font-weight: 700; }
-      .box { border: 2px solid #171717; background: #fffdf6; padding: 18px; box-shadow: 5px 5px 0 #1fbf62; margin-top: 24px; }
-      .label { font-weight: 800; color: #171717; }
-      .step { display: flex; gap: 16px; align-items: flex-start; margin: 16px 0; }
-      .step-num { flex-shrink: 0; width: 32px; height: 32px; background: #171717; color: #f2efe6; font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center; }
-      .step-body { padding-top: 4px; }
-      .btn { display: inline-block; margin-top: 20px; padding: 14px 28px; background: #171717; color: #f2efe6; font-weight: 800; font-size: 16px; text-decoration: none; box-shadow: 4px 4px 0 #1fbf62; }
-      .btn:hover { background: #0a7f38; color: #fff; }
-      .btn-outline { display: inline-block; margin-top: 12px; padding: 12px 24px; border: 2px solid #171717; color: #171717; font-weight: 700; font-size: 15px; text-decoration: none; }
-      .btn-outline:hover { background: #171717; color: #f2efe6; }
+      *, *::before, *::after { box-sizing: border-box; }
+      :root {
+        --bg:     #f2efe6;
+        --ink:    #171717;
+        --sub:    #3f3f3f;
+        --card:   #fffdf6;
+        --green:  #0a7f38;
+        --bright: #1fbf62;
+        --border: 2px solid #171717;
+      }
+      body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Manrope', -apple-system, sans-serif; line-height: 1.6; }
+
+      header { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: var(--border); }
+      nav { max-width: 760px; margin: 0 auto; padding: 0 22px; height: 54px; display: flex; align-items: center; gap: 20px; }
+      .brand { font-family: 'Archivo Black', sans-serif; font-size: 18px; color: var(--ink); text-decoration: none; letter-spacing: -0.3px; flex-shrink: 0; }
+      .back { font-size: 13px; font-weight: 700; color: var(--sub); text-decoration: none; }
+      .back:hover { color: var(--green); }
+      .nav-spacer { flex: 1; }
+      .lang { display: flex; border: var(--border); background: var(--card); flex-shrink: 0; }
+      .lang button { border: 0; background: transparent; padding: 6px 10px; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 0.5px; cursor: pointer; color: var(--sub); }
+      .lang button.active { background: var(--ink); color: var(--bg); }
+
+      main { max-width: 760px; margin: 0 auto; padding: 48px 22px 80px; }
+      h1 { font-family: 'Archivo Black', sans-serif; font-size: 38px; line-height: 1.05; margin: 0 0 8px; letter-spacing: -0.5px; }
+      .intro { font-size: 16px; color: var(--sub); margin: 0 0 40px; }
+      h2 { font-family: 'Archivo Black', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--sub); margin: 40px 0 20px; font-weight: 400; }
+      a { color: var(--green); font-weight: 700; }
+      .step { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 28px; }
+      .step-num { flex-shrink: 0; width: 36px; height: 36px; background: var(--ink); color: var(--bg); font-family: 'Archivo Black', sans-serif; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+      .step-body { padding-top: 6px; }
+      .step-body strong { font-size: 15px; font-weight: 800; color: var(--ink); display: block; margin-bottom: 4px; }
+      .step-body p { font-size: 15px; color: var(--sub); margin: 0 0 16px; }
+      .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; background: var(--ink); color: var(--bg); font-family: 'Archivo Black', sans-serif; font-size: 14px; letter-spacing: 0.3px; text-decoration: none; border: var(--border); box-shadow: 4px 4px 0 var(--bright); margin-bottom: 8px; transition: background 0.14s; }
+      .btn:hover { background: var(--green); color: #fff; }
+      .btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border: var(--border); color: var(--ink); font-weight: 700; font-size: 14px; text-decoration: none; transition: background 0.14s; }
+      .btn-outline:hover { background: var(--ink); color: var(--bg); }
+      .note { border: var(--border); background: var(--card); padding: 18px 20px; box-shadow: 5px 5px 0 var(--bright); margin: 32px 0; }
+      .note p { margin: 0; font-size: 14px; color: var(--sub); }
+      .note strong { color: var(--ink); }
+      .support-row { font-size: 15px; color: var(--sub); margin-top: 32px; }
+
+      body:not(.en) [data-lang="en"] { display: none !important; }
+      body.en [data-lang="it"] { display: none !important; }
     </style>
   </head>
   <body>
-    <main>
-      <h1>Test Android</h1>
-      <p>Foot8 è disponibile in test chiuso su Android. Segui i passaggi qui sotto per installare l'app.</p>
 
-      <h2>Come partecipare</h2>
+    <header>
+      <nav>
+        <a href="./" class="brand">foot8</a>
+        <div class="nav-spacer"></div>
+        <div class="lang" aria-label="Lingua / Language">
+          <button type="button" data-set-lang="it" class="active">IT</button>
+          <button type="button" data-set-lang="en">EN</button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <h1 data-lang="it">Android</h1>
+      <h1 data-lang="en">Android</h1>
+      <p class="intro" data-lang="it">Foot8 è disponibile in test chiuso su Android. Segui i passaggi qui sotto per installare l'app.</p>
+      <p class="intro" data-lang="en">Foot8 is available in closed beta on Android. Follow the steps below to install the app.</p>
+
+      <h2 data-lang="it">Come partecipare</h2>
+      <h2 data-lang="en">How to join</h2>
 
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
-          <p style="margin:0"><span class="label">Unisciti al gruppo tester</span><br>
-          Clicca su "Partecipa al gruppo" e una volta aperta la pagina clicca su <strong>"Partecipa"</strong>. Serve un account Google.</p>
-          <a class="btn" href="https://groups.google.com/g/testers-foot8" target="_blank" rel="noopener">Partecipa al gruppo</a>
+          <strong data-lang="it">Unisciti al gruppo tester</strong>
+          <strong data-lang="en">Join the tester group</strong>
+          <p data-lang="it">Clicca su "Partecipa al gruppo" e una volta aperta la pagina clicca su <b>Partecipa</b>. Serve un account Google.</p>
+          <p data-lang="en">Click "Join the group" and on the page that opens click <b>Join</b>. A Google account is required.</p>
+          <a class="btn" href="https://groups.google.com/g/testers-foot8" target="_blank" rel="noopener" data-lang="it">Partecipa al gruppo →</a>
+          <a class="btn" href="https://groups.google.com/g/testers-foot8" target="_blank" rel="noopener" data-lang="en">Join the group →</a>
         </div>
       </div>
 
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-body">
-          <p style="margin:0"><span class="label">Scarica l'app</span><br>
-          Dopo aver partecipato al gruppo, usa uno dei link qui sotto per scaricare Foot8 dal Play Store. (utilizzare lo stesso account con il quale hai fatto l'accesso al gruppo)</p>
-          <a class="btn" href="https://play.google.com/store/apps/details?id=com.pitocchi.foot8" target="_blank" rel="noopener">Scarica da Play Store</a><br>
-          <a class="btn-outline" href="https://play.google.com/apps/testing/com.pitocchi.foot8" target="_blank" rel="noopener">Accesso diretto al test</a>
+          <strong data-lang="it">Scarica l'app</strong>
+          <strong data-lang="en">Download the app</strong>
+          <p data-lang="it">Dopo aver partecipato al gruppo, usa il link qui sotto per scaricare Foot8 dal Play Store. Usa lo stesso account Google con cui hai aderito al gruppo.</p>
+          <p data-lang="en">After joining the group, use the link below to download Foot8 from the Play Store. Use the same Google account you joined the group with.</p>
+          <div data-lang="it">
+            <a class="btn" href="https://play.google.com/store/apps/details?id=com.pitocchi.foot8" target="_blank" rel="noopener">Scarica da Play Store →</a>
+            <a class="btn-outline" href="https://play.google.com/apps/testing/com.pitocchi.foot8" target="_blank" rel="noopener">Accesso diretto al test</a>
+          </div>
+          <div data-lang="en">
+            <a class="btn" href="https://play.google.com/store/apps/details?id=com.pitocchi.foot8" target="_blank" rel="noopener">Download from Play Store →</a>
+            <a class="btn-outline" href="https://play.google.com/apps/testing/com.pitocchi.foot8" target="_blank" rel="noopener">Direct testing link</a>
+          </div>
         </div>
       </div>
 
-      <div class="box">
-        <p style="margin:0"><span class="label">Nota:</span> se il link al Play Store non mostra l'app subito, attendi qualche minuto dopo aver partecipato al gruppo e riprova.</p>
+      <div class="note">
+        <p data-lang="it"><strong>Nota:</strong> se il link al Play Store non mostra l'app subito, attendi qualche minuto dopo aver partecipato al gruppo e riprova.</p>
+        <p data-lang="en"><strong>Note:</strong> if the Play Store link doesn't show the app immediately, wait a few minutes after joining the group and try again.</p>
       </div>
 
-      <h2>Problemi o domande?</h2>
-      <p>Scrivi a <a href="mailto:alessandro@pitocchi.it">alessandro@pitocchi.it</a> o consulta la pagina <a href="./support.html">Supporto</a>.</p>
+      <div class="support-row">
+        <span data-lang="it">Problemi o domande? Scrivi a <a href="mailto:alessandro@pitocchi.it">alessandro@pitocchi.it</a> o consulta la pagina <a href="./support.html">Supporto</a>.</span>
+        <span data-lang="en">Questions or issues? Write to <a href="mailto:alessandro@pitocchi.it">alessandro@pitocchi.it</a> or see the <a href="./support.html">Support</a> page.</span>
+      </div>
     </main>
+
+    <script>
+      function setLang(lang) {
+        document.body.classList.toggle('en', lang === 'en');
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-set-lang]').forEach(function(btn) {
+          btn.classList.toggle('active', btn.dataset.setLang === lang);
+        });
+        localStorage.setItem('foot8_lang', lang);
+      }
+      var params = new URLSearchParams(window.location.search);
+      setLang(params.get('lang') || localStorage.getItem('foot8_lang') || 'it');
+      document.querySelectorAll('[data-set-lang]').forEach(function(btn) {
+        btn.addEventListener('click', function() { setLang(btn.dataset.setLang); });
+      });
+    </script>
   </body>
 </html>

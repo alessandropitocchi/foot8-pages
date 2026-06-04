@@ -3,58 +3,463 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Foot8 - Policy e supporto</title>
+    <title>Foot8 – Il calcetto serio.</title>
     <link rel="icon" type="image/png" href="./icon.png">
+    <meta name="description" content="Foot8 è l'app per organizzare il calcetto. Leghe, sondaggi, convocazioni, squadre e statistiche.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-      body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f2efe6; color: #171717; line-height: 1.6; }
-      main { max-width: 760px; margin: 0 auto; padding: 56px 22px; }
-      h1 { font-size: 42px; line-height: 1.05; margin: 0 0 12px; }
-      p { color: #4b4b4b; }
-      a { color: #0a7f38; font-weight: 700; }
-      .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
-      .lang { display: flex; border: 2px solid #171717; background: #fffdf6; }
-      .lang button { border: 0; background: transparent; padding: 8px 10px; font-weight: 800; cursor: pointer; }
-      .lang button.active { background: #171717; color: #fffdf6; }
-      .links { display: grid; gap: 12px; margin-top: 28px; }
-      .card { border: 2px solid #171717; background: #fffdf6; padding: 18px; box-shadow: 5px 5px 0 #1fbf62; }
-      [data-lang="en"] { display: none; }
-      body.en [data-lang="it"] { display: none; }
-      body.en [data-lang="en"] { display: block; }
+      *, *::before, *::after { box-sizing: border-box; }
+
+      :root {
+        --bg:     #f2efe6;
+        --ink:    #171717;
+        --sub:    #3f3f3f;
+        --card:   #fffdf6;
+        --green:  #0a7f38;
+        --bright: #1fbf62;
+        --border: 2px solid #171717;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'Manrope', -apple-system, sans-serif;
+        line-height: 1.6;
+      }
+
+      /* ── Nav ── */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--bg);
+        border-bottom: var(--border);
+      }
+      nav {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 22px;
+        height: 54px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+      .brand {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 18px;
+        color: var(--ink);
+        text-decoration: none;
+        letter-spacing: -0.3px;
+        flex-shrink: 0;
+      }
+      .nav-links {
+        display: flex;
+        gap: 20px;
+        flex: 1;
+      }
+      .nav-links a {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--sub);
+        text-decoration: none;
+        letter-spacing: 0.5px;
+      }
+      .nav-links a:hover { color: var(--green); }
+      .lang {
+        display: flex;
+        border: var(--border);
+        background: var(--card);
+        flex-shrink: 0;
+      }
+      .lang button {
+        border: 0;
+        background: transparent;
+        padding: 6px 10px;
+        font-family: 'Manrope', sans-serif;
+        font-weight: 800;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        color: var(--sub);
+      }
+      .lang button.active { background: var(--ink); color: var(--bg); }
+
+      @media (max-width: 520px) {
+        .nav-links { display: none; }
+      }
+
+      /* ── Sections ── */
+      section { max-width: 900px; margin: 0 auto; padding: 0 22px; }
+
+      /* ── Hero ── */
+      .hero {
+        padding-top: 64px;
+        padding-bottom: 72px;
+      }
+      @media (max-width: 640px) {
+        .hero { padding-top: 48px; padding-bottom: 56px; }
+      }
+      .eyebrow {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 11px;
+        letter-spacing: 2.5px;
+        color: var(--green);
+        margin: 0 0 12px;
+      }
+      h1 {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: clamp(40px, 6vw, 56px);
+        line-height: 1.0;
+        margin: 0 0 20px;
+        letter-spacing: -1px;
+      }
+      .hero-sub {
+        font-size: 17px;
+        color: var(--sub);
+        line-height: 1.65;
+        margin: 0 0 36px;
+        max-width: 540px;
+      }
+      .download-btns {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .btn-dl {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 14px 20px;
+        background: var(--ink);
+        color: var(--bg);
+        text-decoration: none;
+        border: var(--border);
+        box-shadow: 4px 4px 0 var(--bright);
+        transition: background 0.14s;
+        min-width: 140px;
+      }
+      .btn-dl:hover { background: var(--green); }
+      .btn-dl .plat {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        opacity: 0.65;
+      }
+      .btn-dl .cta-text {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+      }
+
+      /* ── Features ── */
+      .features-section {
+        border-top: var(--border);
+        padding-top: 56px;
+        padding-bottom: 64px;
+      }
+      .section-eyebrow {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 11px;
+        letter-spacing: 2.5px;
+        color: var(--green);
+        margin: 0 0 8px;
+      }
+      h2.section-title {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: clamp(28px, 4vw, 38px);
+        margin: 0 0 40px;
+        line-height: 1.05;
+        letter-spacing: -0.5px;
+      }
+      .features-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      @media (max-width: 560px) { .features-grid { grid-template-columns: 1fr; } }
+      .feature-card {
+        border: var(--border);
+        background: var(--card);
+        padding: 24px;
+        box-shadow: 5px 5px 0 var(--bright);
+      }
+      .feature-title {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+        margin: 0 0 8px;
+        text-transform: uppercase;
+      }
+      .feature-desc {
+        font-size: 14px;
+        color: var(--sub);
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      /* ── Download CTA ── */
+      .cta-section {
+        border-top: var(--border);
+        padding-top: 56px;
+        padding-bottom: 64px;
+      }
+      .cta-inner {
+        border: var(--border);
+        background: var(--ink);
+        color: var(--bg);
+        padding: 40px 36px;
+        box-shadow: 8px 8px 0 var(--bright);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+      .cta-inner h3 {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: clamp(22px, 3.5vw, 30px);
+        margin: 0 0 6px;
+        letter-spacing: -0.3px;
+        color: var(--bg);
+      }
+      .cta-inner p {
+        font-size: 15px;
+        color: rgba(242,239,230,0.65);
+        margin: 0;
+      }
+      .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; flex-shrink: 0; }
+      .btn-cta-light {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 14px 20px;
+        background: var(--bg);
+        color: var(--ink);
+        text-decoration: none;
+        border: 2px solid var(--bg);
+        box-shadow: 4px 4px 0 var(--bright);
+        min-width: 130px;
+        transition: background 0.14s;
+      }
+      .btn-cta-light:hover { background: var(--bright); border-color: var(--bright); }
+      .btn-cta-light .plat { font-size: 10px; font-weight: 800; letter-spacing: 1.6px; opacity: 0.55; }
+      .btn-cta-light .cta-text { font-family: 'Archivo Black', sans-serif; font-size: 15px; }
+
+      /* ── Social ── */
+      .social-section {
+        border-top: var(--border);
+        padding-top: 48px;
+        padding-bottom: 56px;
+      }
+      .social-section h2 {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 13px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--sub);
+        margin: 0 0 20px;
+        font-weight: 400;
+      }
+      .social-grid { display: flex; gap: 12px; flex-wrap: wrap; }
+      .social-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: var(--border);
+        background: var(--card);
+        color: var(--ink);
+        padding: 14px 18px;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 14px;
+        box-shadow: 4px 4px 0 var(--bright);
+        transition: background 0.14s;
+      }
+      .social-btn:hover { background: var(--ink); color: var(--bg); }
+      .social-btn svg { flex-shrink: 0; }
+
+      /* ── Footer ── */
+      footer {
+        border-top: var(--border);
+        padding: 20px 22px;
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .footer-brand {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 15px;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+      .footer-links a { font-size: 13px; font-weight: 700; color: var(--sub); text-decoration: none; }
+      .footer-links a:hover { color: var(--green); }
+
+      /* ── i18n ── */
+      body:not(.en) [data-lang="en"] { display: none !important; }
+      body.en [data-lang="it"] { display: none !important; }
     </style>
   </head>
   <body>
-    <main>
-      <div class="top">
-        <div>
-          <h1>Foot8</h1>
-          <p data-lang="it">Documenti pubblici per privacy, supporto e revisione App Store.</p>
-          <p data-lang="en">Public documents for privacy, support and App Store review.</p>
+
+    <!-- NAV -->
+    <header>
+      <nav>
+        <a href="./" class="brand">foot8</a>
+        <div class="nav-links">
+          <a href="./android.html" data-lang="it">Android</a>
+          <a href="./android.html" data-lang="en">Android</a>
+          <a href="./support.html" data-lang="it">Supporto</a>
+          <a href="./support.html" data-lang="en">Support</a>
+          <a href="./privacy.html" data-lang="it">Privacy</a>
+          <a href="./privacy.html" data-lang="en">Privacy</a>
         </div>
-        <div class="lang" aria-label="Language switch">
+        <div class="lang" aria-label="Lingua / Language">
           <button type="button" data-set-lang="it" class="active">IT</button>
           <button type="button" data-set-lang="en">EN</button>
         </div>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">FOOT8</p>
+        <h1 data-lang="it">Il calcetto<br>serio.</h1>
+        <h1 data-lang="en">Serious<br>5-a-side.</h1>
+        <p class="hero-sub" data-lang="it">Foot8 risolve il caos da WhatsApp: chi viene, dove giocare, a che ora. Leghe, convocazioni, sondaggi, squadre e statistiche — tutto in un posto.</p>
+        <p class="hero-sub" data-lang="en">Foot8 fixes the WhatsApp chaos: who's coming, where to play, what time. Leagues, call-ups, polls, teams and stats — all in one place.</p>
+        <div class="download-btns">
+          <a class="btn-dl" href="https://apps.apple.com/us/app/foot8/id6769198382" target="_blank" rel="noopener">
+            <span class="plat">iOS</span>
+            <span class="cta-text">App Store →</span>
+          </a>
+          <a class="btn-dl" href="./android.html">
+            <span class="plat">Android</span>
+            <span class="cta-text">Play Store →</span>
+          </a>
+        </div>
       </div>
-      <div class="links">
-        <a class="card" href="./privacy.html" data-lang="it">Privacy Policy</a>
-        <a class="card" href="./privacy.html?lang=en" data-lang="en">Privacy Policy</a>
-        <a class="card" href="./support.html" data-lang="it">Supporto</a>
-        <a class="card" href="./support.html?lang=en" data-lang="en">Support</a>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features-section">
+      <p class="section-eyebrow" data-lang="it">FUNZIONALITÀ</p>
+      <p class="section-eyebrow" data-lang="en">FEATURES</p>
+      <h2 class="section-title" data-lang="it">Tutto quello che ti serve.</h2>
+      <h2 class="section-title" data-lang="en">Everything you need.</h2>
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <p class="feature-title" data-lang="it">Leghe</p>
+          <p class="feature-title" data-lang="en">Leagues</p>
+          <p class="feature-desc" data-lang="it">Crea la tua lega con un codice invito. Giocatori, ruoli, classifica e storico partite — tutto separato per ogni lega.</p>
+          <p class="feature-desc" data-lang="en">Create your league with an invite code. Players, roles, standings and match history — all separate per league.</p>
+        </div>
+
+        <div class="feature-card">
+          <p class="feature-title" data-lang="it">Sondaggi</p>
+          <p class="feature-title" data-lang="en">Polls</p>
+          <p class="feature-desc" data-lang="it">Non sai ancora la data? Apri un sondaggio con più proposte. Ogni membro vota sì, forse o no.</p>
+          <p class="feature-desc" data-lang="en">Don't know the date yet? Open a poll with multiple options. Each member votes yes, maybe or no.</p>
+        </div>
+
+        <div class="feature-card">
+          <p class="feature-title" data-lang="it">Partite</p>
+          <p class="feature-title" data-lang="en">Matches</p>
+          <p class="feature-desc" data-lang="it">Convoca i giocatori, forma le squadre per OVR, assegna le maglie e salva il risultato con gol e MVP.</p>
+          <p class="feature-desc" data-lang="en">Call up players, build teams by OVR, assign kit colours and save the result with goals and MVP.</p>
+        </div>
+
+        <div class="feature-card">
+          <p class="feature-title" data-lang="it">Carta giocatore</p>
+          <p class="feature-title" data-lang="en">Player card</p>
+          <p class="feature-desc" data-lang="it">Ogni giocatore ha una carta con il suo overall. Cresce partita dopo partita con vittorie, gol e MVP.</p>
+          <p class="feature-desc" data-lang="en">Every player has a card with their overall. It grows match by match with wins, goals and MVP.</p>
+        </div>
+
       </div>
-    </main>
+    </section>
+
+    <!-- DOWNLOAD CTA -->
+    <section class="cta-section">
+      <div class="cta-inner">
+        <div>
+          <h3 data-lang="it">Gratis. Per iOS e Android.</h3>
+          <h3 data-lang="en">Free. For iOS and Android.</h3>
+          <p data-lang="it">Inizia subito, senza abbonamento.</p>
+          <p data-lang="en">Get started now, no subscription needed.</p>
+        </div>
+        <div class="cta-btns">
+          <a class="btn-cta-light" href="https://apps.apple.com/us/app/foot8/id6769198382" target="_blank" rel="noopener">
+            <span class="plat">iOS</span>
+            <span class="cta-text">App Store →</span>
+          </a>
+          <a class="btn-cta-light" href="./android.html">
+            <span class="plat">Android</span>
+            <span class="cta-text">Play Store →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL -->
+    <section class="social-section">
+      <h2 data-lang="it">Seguici</h2>
+      <h2 data-lang="en">Follow us</h2>
+      <div class="social-grid">
+        <a class="social-btn" href="https://www.instagram.com/foot8app" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          @foot8app
+        </a>
+        <a class="social-btn" href="https://www.tiktok.com/@foot8app" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.22 8.22 0 0 0 4.81 1.54V6.78a4.85 4.85 0 0 1-1.04-.09z"/>
+          </svg>
+          @foot8app
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <a href="./" class="footer-brand">foot8</a>
+      <div class="footer-links">
+        <a href="./android.html">Android</a>
+        <a href="./support.html" data-lang="it">Supporto</a>
+        <a href="./support.html" data-lang="en">Support</a>
+        <a href="./privacy.html">Privacy</a>
+        <a href="mailto:alessandro@pitocchi.it" data-lang="it">Contatti</a>
+        <a href="mailto:alessandro@pitocchi.it" data-lang="en">Contact</a>
+      </div>
+    </footer>
+
     <script>
       function setLang(lang) {
         document.body.classList.toggle('en', lang === 'en');
         document.documentElement.lang = lang;
-        document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
+        document.querySelectorAll('[data-set-lang]').forEach(function(btn) {
           btn.classList.toggle('active', btn.dataset.setLang === lang);
         });
         localStorage.setItem('foot8_lang', lang);
       }
       var params = new URLSearchParams(window.location.search);
       setLang(params.get('lang') || localStorage.getItem('foot8_lang') || 'it');
-      document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
-        btn.addEventListener('click', function () { setLang(btn.dataset.setLang); });
+      document.querySelectorAll('[data-set-lang]').forEach(function(btn) {
+        btn.addEventListener('click', function() { setLang(btn.dataset.setLang); });
       });
     </script>
   </body>
