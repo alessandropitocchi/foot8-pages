@@ -60,7 +60,7 @@
       header {
         position: sticky;
         top: 0;
-        z-index: 1;
+        z-index: 100;
         background: var(--bg);
         border-bottom: var(--line);
       }
@@ -139,13 +139,12 @@
         line-height: 0.98;
       }
 
-      /* Il contenuto del blog sta sopra: l'header del sito (e il resto)
-         gli scorre dietro grazie allo z-index più alto + sfondo pieno. */
+      /* Il contenuto del blog scorre SOTTO l'header del sito (z-index basso),
+         che resta opaco e in primo piano. */
       .blog-section {
         position: relative;
-        z-index: 2;
+        z-index: 1;
         padding-bottom: 96px;
-        background: var(--bg);
       }
       #soro-blog { min-height: 40vh; }
 
