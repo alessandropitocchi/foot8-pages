@@ -58,9 +58,7 @@
       .skip-link:focus { top: 12px; }
 
       header {
-        position: sticky;
-        top: 0;
-        z-index: 100;
+        position: static;
         background: var(--bg);
         border-bottom: var(--line);
       }
@@ -139,13 +137,7 @@
         line-height: 0.98;
       }
 
-      /* Il contenuto del blog scorre SOTTO l'header del sito (z-index basso),
-         che resta opaco e in primo piano. */
-      .blog-section {
-        position: relative;
-        z-index: 1;
-        padding-bottom: 96px;
-      }
+      .blog-section { padding-bottom: 96px; }
       #soro-blog { min-height: 40vh; }
 
       /* Quando è aperto un singolo articolo (?post=...) l'intro sparisce
