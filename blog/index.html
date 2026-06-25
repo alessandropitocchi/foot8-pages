@@ -276,6 +276,26 @@
         };
         window.addEventListener('popstate', reloadIfArticleChanged);
       })();
+
+      // Soro inietta un proprio header dell'articolo "sticky" che si scontra
+      // con l'header fisso del sito (due barre sovrapposte). Qui lo neutralizziamo:
+      // ogni elemento sticky/fixed dentro l'embed torna a scorrimento normale,
+      // così l'unico elemento fisso resta l'header del sito.
+      (function () {
+        var mount = document.getElementById('soro-blog');
+        if (!mount) return;
+        function unstick() {
+          var els = mount.querySelectorAll('*');
+          for (var i = 0; i < els.length; i++) {
+            var pos = window.getComputedStyle(els[i]).position;
+            if (pos === 'sticky' || pos === '-webkit-sticky' || pos === 'fixed') {
+              els[i].style.setProperty('position', 'static', 'important');
+            }
+          }
+        }
+        new MutationObserver(unstick).observe(mount, { childList: true, subtree: true });
+        unstick();
+      })();
     </script>
     <script src="https://app.trysoro.com/api/embed/36b557d9-e65c-44a3-9f5e-3e35d236845e" defer></script>
   </body>
