@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog - Foot8</title>
+    <meta name="description" content="Storie, consigli e novità dal mondo Foot8: il calcetto organizzato sul serio.">
+    <meta name="theme-color" content="#0a7f38">
+    <meta property="og:title" content="Blog - Foot8">
+    <meta property="og:description" content="Storie, consigli e novità dal mondo Foot8.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="../icon.png">
+    <link rel="icon" type="image/png" href="../icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+
+      :root {
+        --bg: #f2efe6;
+        --ink: #111713;
+        --sub: #4a514c;
+        --muted: #dfe5dc;
+        --card: #fffdf6;
+        --green: #0a7f38;
+        --deep-green: #07592a;
+        --bright: #1fbf62;
+        --line: 2px solid var(--ink);
+        --shadow: 6px 6px 0 var(--ink);
+      }
+
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      a, button { -webkit-tap-highlight-color: transparent; }
+      a:focus-visible, button:focus-visible {
+        outline: 3px solid var(--bright);
+        outline-offset: 3px;
+      }
+      .skip-link {
+        position: fixed;
+        left: 16px;
+        top: -80px;
+        z-index: 1000;
+        padding: 10px 14px;
+        background: var(--ink);
+        color: #fff;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .skip-link:focus { top: 12px; }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(242, 239, 230, 0.94);
+        border-bottom: var(--line);
+        backdrop-filter: blur(12px);
+      }
+      nav {
+        width: min(1120px, calc(100% - 40px));
+        height: 64px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--ink);
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 19px;
+        letter-spacing: -0.4px;
+        text-decoration: none;
+      }
+      .brand img { width: 30px; height: 30px; border: 1px solid rgba(17, 23, 19, 0.16); border-radius: 8px; }
+      .nav-links { display: flex; align-items: center; gap: 22px; flex: 1; }
+      .nav-links a {
+        color: var(--sub);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        text-decoration: none;
+      }
+      .nav-links a:hover { color: var(--green); }
+      .lang { display: flex; flex-shrink: 0; border: var(--line); background: var(--card); }
+      .lang button {
+        border: 0;
+        background: transparent;
+        padding: 6px 10px;
+        color: var(--sub);
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .lang button.active { background: var(--ink); color: var(--bg); }
+
+      section, footer { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+      .eyebrow {
+        margin: 0 0 12px;
+        color: var(--green);
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 11px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+      }
+      .section-title {
+        max-width: 680px;
+        margin: 0;
+        font-family: 'Archivo Black', sans-serif;
+        font-size: clamp(30px, 4vw, 48px);
+        letter-spacing: -1px;
+        line-height: 1.05;
+      }
+      .section-copy {
+        max-width: 610px;
+        margin: 16px 0 0;
+        color: var(--sub);
+        font-size: 16px;
+      }
+
+      .blog-hero { padding-top: 72px; padding-bottom: 40px; }
+      .blog-hero h1 {
+        max-width: 760px;
+        margin: 0;
+        font-family: 'Archivo Black', sans-serif;
+        font-size: clamp(40px, 6vw, 68px);
+        letter-spacing: -2px;
+        line-height: 0.98;
+      }
+
+      .blog-section { padding-bottom: 96px; }
+      #soro-blog { min-height: 40vh; }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        padding-top: 24px;
+        padding-bottom: 28px;
+        border-top: var(--line);
+      }
+      .footer-copy { color: var(--sub); font-size: 12px; font-weight: 700; }
+      .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+      .footer-links a { color: var(--sub); font-size: 13px; font-weight: 800; text-decoration: none; }
+      .footer-links a:hover { color: var(--green); }
+
+      body:not(.en) [data-lang="en"] { display: none !important; }
+      body.en [data-lang="it"] { display: none !important; }
+
+      @media (max-width: 680px) {
+        nav, section, footer { width: min(100% - 28px, 1120px); }
+        nav { gap: 14px; height: 58px; }
+        .brand span { display: none; }
+        .nav-links { gap: 13px; overflow-x: auto; scrollbar-width: none; }
+        .nav-links::-webkit-scrollbar { display: none; }
+        .nav-links a { font-size: 12px; white-space: nowrap; }
+        .lang button { padding: 5px 8px; }
+        .blog-hero { padding-top: 48px; padding-bottom: 28px; }
+        .blog-hero h1 { font-size: clamp(36px, 12vw, 56px); letter-spacing: -1.4px; }
+        .blog-section { padding-bottom: 64px; }
+        footer { align-items: flex-start; flex-direction: column; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Vai al contenuto</a>
+
+    <header>
+      <nav aria-label="Navigazione principale">
+        <a href="../" class="brand" aria-label="Foot8 home">
+          <span>foot8</span>
+        </a>
+        <div class="nav-links">
+          <a href="../#funzionalita" data-lang="it">Funzionalità</a>
+          <a href="../#funzionalita" data-lang="en">Features</a>
+          <a href="./" data-lang="it">Blog</a>
+          <a href="./" data-lang="en">Blog</a>
+          <a href="../support.html" data-lang="it">Supporto</a>
+          <a href="../support.html" data-lang="en">Support</a>
+        </div>
+        <div class="lang" aria-label="Lingua / Language">
+          <button type="button" data-set-lang="it" class="active" aria-pressed="true">IT</button>
+          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="blog-hero">
+        <p class="eyebrow" data-lang="it">Dal blog</p>
+        <p class="eyebrow" data-lang="en">From the blog</p>
+        <h1 data-lang="it">Storie, consigli<br>e novità di Foot8.</h1>
+        <h1 data-lang="en">Stories, tips<br>and Foot8 news.</h1>
+        <p class="section-copy" data-lang="it">Tutto quello che succede dentro e fuori dal campo: aggiornamenti dell'app, idee per organizzare la tua lega e racconti dalle partite del giovedì.</p>
+        <p class="section-copy" data-lang="en">Everything happening on and off the pitch: app updates, ideas to organise your league and stories from Thursday matches.</p>
+      </section>
+
+      <section class="blog-section">
+        <div id="soro-blog"></div>
+      </section>
+    </main>
+
+    <footer>
+      <span class="footer-copy">© 2026 Foot8</span>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/foot8.app" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@foot8app" target="_blank" rel="noopener">TikTok</a>
+        <a href="../support.html" data-lang="it">Supporto</a>
+        <a href="../support.html" data-lang="en">Support</a>
+        <a href="../privacy.html">Privacy</a>
+      </div>
+    </footer>
+
+    <script>
+      function setLang(lang) {
+        document.body.classList.toggle('en', lang === 'en');
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-set-lang]').forEach(function(btn) {
+          var isActive = btn.dataset.setLang === lang;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-pressed', String(isActive));
+        });
+        localStorage.setItem('foot8_lang', lang);
+      }
+      var params = new URLSearchParams(window.location.search);
+      setLang(params.get('lang') || localStorage.getItem('foot8_lang') || 'it');
+      document.querySelectorAll('[data-set-lang]').forEach(function(btn) {
+        btn.addEventListener('click', function() { setLang(btn.dataset.setLang); });
+      });
+    </script>
+    <script src="https://app.trysoro.com/api/embed/36b557d9-e65c-44a3-9f5e-3e35d236845e" defer></script>
+  </body>
+</html>
