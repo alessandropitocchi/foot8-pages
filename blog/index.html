@@ -58,10 +58,16 @@
       .skip-link:focus { top: 12px; }
 
       header {
-        position: static;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
         background: var(--bg);
         border-bottom: var(--line);
       }
+      /* Il contenuto parte sotto l'header fisso e non gli sale mai dietro. */
+      main { padding-top: 64px; }
       nav {
         width: min(1120px, calc(100% - 40px));
         height: 64px;
@@ -165,6 +171,7 @@
       @media (max-width: 680px) {
         nav, section, footer { width: min(100% - 28px, 1120px); }
         nav { gap: 14px; height: 58px; }
+        main { padding-top: 58px; }
         .brand span { display: none; }
         .nav-links { gap: 13px; overflow-x: auto; scrollbar-width: none; }
         .nav-links::-webkit-scrollbar { display: none; }
