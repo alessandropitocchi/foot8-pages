@@ -246,25 +246,28 @@
         btn.addEventListener('click', function() { setLang(btn.dataset.setLang); });
       });
 
-      // Soro apre i singoli articoli cambiando l'URL in /blog/?post=slug
-      // (via history.pushState, senza ricaricare). Qui intercettiamo quei
-      // cambi di URL per dare all'articolo una vista a pagina piena.
+      // Soro apre/chiude gli articoli cambiando l'URL in /blog/?post=slug
+      // via history.pushState, SENZA ricaricare: questo lascia la pagina in
+      // uno stato "appiccicato". Qui forziamo un refresh reale ogni volta che
+      // l'articolo aperto cambia, così la pagina riparte sempre pulita.
       (function () {
-        function syncArticleView() {
-          var hasPost = new URLSearchParams(window.location.search).has('post');
-          document.body.classList.toggle('article-open', hasPost);
-          if (hasPost) window.scrollTo(0, 0);
+        var loadedPost = new URLSearchParams(window.location.search).get('post');
+
+        // All'apertura: se siamo già su un articolo, nascondi l'intro.
+        document.body.classList.toggle('article-open', !!loadedPost);
+
+        function reloadIfArticleChanged() {
+          var current = new URLSearchParams(window.location.search).get('post');
+          if (current !== loadedPost) window.location.reload();
         }
-        ['pushState', 'replaceState'].forEach(function (method) {
-          var original = history[method];
-          history[method] = function () {
-            var result = original.apply(this, arguments);
-            syncArticleView();
-            return result;
-          };
-        });
-        window.addEventListener('popstate', syncArticleView);
-        syncArticleView();
+
+        var originalPushState = history.pushState;
+        history.pushState = function () {
+          var result = originalPushState.apply(this, arguments);
+          reloadIfArticleChanged();
+          return result;
+        };
+        window.addEventListener('popstate', reloadIfArticleChanged);
       })();
     </script>
     <script src="https://app.trysoro.com/api/embed/36b557d9-e65c-44a3-9f5e-3e35d236845e" defer></script>
