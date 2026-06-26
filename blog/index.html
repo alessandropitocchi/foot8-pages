@@ -222,6 +222,19 @@
 
       <section class="blog-section">
         <div id="soro-blog"></div>
+        <script>
+          // Soro serve lo script con cache CDN di 1 ora (max-age=3600), quindi i
+          // nuovi articoli appena pubblicati possono non comparire subito.
+          // Aggiungiamo un parametro che cambia ogni 10 minuti: la CDN resta
+          // utile (cache a blocchi di 10 min) ma il contenuto non resta mai
+          // più vecchio di così.
+          (function () {
+            var bucket = Math.floor(Date.now() / (10 * 60 * 1000));
+            var s = document.createElement('script');
+            s.src = 'https://app.trysoro.com/api/embed/36b557d9-e65c-44a3-9f5e-3e35d236845e?v=' + bucket;
+            document.body.appendChild(s);
+          })();
+        </script>
       </section>
     </main>
 
@@ -297,6 +310,6 @@
         unstick();
       })();
     </script>
-    <script src="https://app.trysoro.com/api/embed/36b557d9-e65c-44a3-9f5e-3e35d236845e" defer></script>
+
   </body>
 </html>
